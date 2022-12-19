@@ -3,11 +3,12 @@
 include_once __DIR__ . '/classes/food.php';
 include_once __DIR__ . '/classes/accessories.php';
 include_once __DIR__ . '/classes/games.php';
+include_once __DIR__ . '/classes/category.php';
 
 $type = [
-    'dog' => new category('<i class="fa-solid fa-dog"></i>', 'Cane'),
-    'cat' => new category('<i class="fa-solid fa-cat"></i>', 'Gatto'),
-    'bird' => new category('<i class="fa-solid fa-dove"></i>', 'Uccello')
+    'dog' => new category('<i class="fa-solid fa-dog"></i>', ' Cane'),
+    'cat' => new category('<i class="fa-solid fa-cat"></i>', ' Gatto'),
+    'bird' => new category('<i class="fa-solid fa-dove"></i>', ' Uccello')
 ];
 
 $products = [
@@ -16,22 +17,6 @@ $products = [
     new accessories('./assets/img/voliera-ferplast.jpg', 'Voliera Ferplast Bella Casa', $type['bird'], 184.99, 'Legno', 'L 83 x P 67 x H 153 cm'),
     new games('./assets/img/topini-trixie.jpg', 'Topini di Peluche Trixie', $type['cat'], 4.99, 'Morbido con codina in corda', '8,5cm x 10cm')
 ];
-
-echo '<pre>';
-var_dump($products[0]);
-echo '</pre>';
-
-echo '<pre>';
-var_dump($products[1]);
-echo '</pre>';
-
-echo '<pre>';
-var_dump($products[2]);
-echo '</pre>';
-
-echo '<pre>';
-var_dump($products[3]);
-echo '</pre>';
 
 
 
@@ -49,7 +34,34 @@ echo '</pre>';
 </head>
 <body>
     
+    <?php 
+    
+    foreach ($products as $product) {
+            echo "<img src='$product->imgpath' alt=''" . '<br>';
+            echo "<h2>" . $product->name . "</h2>";
+            echo $product->category->icon . $product->category->name . '<br>';
+            echo $product->price . '<br>';
 
+            if ($product instanceof food) {
+                
+                echo $product->weight . '<br>';
+                echo $product->ingredients . '<br>';
+                
+            } elseif ($product instanceof accessories) {
+            
+                echo $product->material . '<br>';
+                echo $product->size . '<br>';
+                
+
+            } elseif ($product instanceof games) {
+                
+                echo $product->features . '<br>';
+                echo $product->size . '<br>';
+            }
+      }
+      
+
+    ?>
 
 
 
