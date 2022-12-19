@@ -2,7 +2,7 @@
 
 include_once __DIR__ . '/category.php';
 
-class MyClass {
+class Products {
   public $imgpath;
   public $name;
   public $price;
