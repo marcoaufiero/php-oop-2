@@ -30,40 +30,74 @@ $products = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://kit.fontawesome.com/20d85c6a60.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
 </head>
 <body>
     
-    <?php 
-    
-    foreach ($products as $product) {
-            echo "<img src='$product->imgpath' alt=''" . '<br>';
-            echo "<h2>" . $product->name . "</h2>";
-            echo $product->category->icon . $product->category->name . '<br>';
-            echo $product->price . '<br>';
-
-            if ($product instanceof food) {
+    <div class="card-box">
+    <?php    
+        foreach ($products as $product) {
                 
-                echo $product->weight . '<br>';
-                echo $product->ingredients . '<br>';
+            echo "<div class='card'>";
                 
-            } elseif ($product instanceof accessories) {
-            
-                echo $product->material . '<br>';
-                echo $product->size . '<br>';
+                echo "<img src='$product->imgpath' alt=''" . '<br>';
+                echo "<h2>" . $product->name . "</h2>";
+                echo $product->category->icon . $product->category->name . '<br>';
+                echo $product->price . '<br>';
+
+                if ($product instanceof food) {
+                    
+                    echo $product->weight . '<br>';
+                    echo $product->ingredients . '<br>';
+                    
+                } elseif ($product instanceof accessories) {
                 
+                    echo $product->material . '<br>';
+                    echo $product->size . '<br>';
+                    
 
-            } elseif ($product instanceof games) {
+                } elseif ($product instanceof games) {
+                    
+                    echo $product->features . '<br>';
+                    echo $product->size . '<br>';
+                }
+
+            echo "</div>";
                 
-                echo $product->features . '<br>';
-                echo $product->size . '<br>';
-            }
-      }
-      
-
-    ?>
-
-
+        }
+      ?>
+    </div>
 
 </body>
 </html>
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.card-box{
+    width: 60%;
+    margin-inline: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 100px;
+}
+
+.card{
+    padding: 10px;
+    width: calc( 100% / 3 - 20px);
+    border: 1px solid grey;
+}
+
+.card > *{
+    padding-bottom: 20px;
+}
+
+.card img{
+    width: 100%;
+}
+</style>
