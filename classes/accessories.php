@@ -2,15 +2,15 @@
 
 include_once __DIR__ . '/products.php';
 
-class accessories extends Prodotto {
+class accessories extends Product {
   public $material;
   public $size;
 
   public function __construct(
     String $imgpath,
     String $name,
-    Float $price,
     Category $category,
+    Float $price,
     
     String $material,
     String $size 
@@ -18,7 +18,7 @@ class accessories extends Prodotto {
   ) {
     $this->material = $material;
     $this->size = $size;
-    parent::__construct($imgpath,$name,$price,$category);
+    parent::__construct($imgpath,$name,$category,$price);
   }
 }
 
